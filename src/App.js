@@ -7,7 +7,7 @@ import * as FourSquareAPI from './FourSquareAPI'
 class App extends Component {
 
   state = {
-    allLocations : [],
+    venues : [],
     markers : [],
     center : [],
     zoom : 13
@@ -31,7 +31,7 @@ class App extends Component {
           }
         })
 
-        this.setState({allLocations: venues, markers: markers, center: center})
+        this.setState({venues, center, markers})
       })
 
 
