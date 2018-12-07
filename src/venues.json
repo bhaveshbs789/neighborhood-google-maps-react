@@ -1,0 +1,400 @@
+[  
+   {  
+      "id":"4ebfdbf67ee54e4cd2b3d0f1",
+      "name":"Mehfil Biryani Darbar Family Restaurant",
+      "location":{  
+         "address":"Narayanguda X Road",
+         "lat":17.398863309147313,
+         "lng":78.49376031475073,
+         "labeledLatLngs":[  
+            {  
+               "label":"display",
+               "lat":17.398863309147313,
+               "lng":78.49376031475073
+            }
+         ],
+         "cc":"IN",
+         "city":"Hyderabad",
+         "state":"Telangana",
+         "country":"India",
+         "formattedAddress":[  
+            "Narayanguda X Road",
+            "Hyderabad",
+            "Telangana",
+            "India"
+         ]
+      },
+      "categories":[  
+         {  
+            "id":"4bf58dd8d48988d147941735",
+            "name":"Diner",
+            "pluralName":"Diners",
+            "shortName":"Diner",
+            "icon":{  
+               "prefix":"https://ss3.4sqi.net/img/categories_v2/food/diner_",
+               "suffix":".png"
+            },
+            "primary":true
+         }
+      ],
+      "referralId":"v-1544080206",
+      "hasPerk":false
+   },
+   {  
+      "id":"55f5d159498e079402f9d3e8",
+      "name":"Paradise Biryani",
+      "location":{  
+         "address":"Opp. Brand Factory",
+         "crossStreet":"Himayat Nagar",
+         "lat":17.4010768655357,
+         "lng":78.4857702255249,
+         "labeledLatLngs":[  
+            {  
+               "label":"display",
+               "lat":17.4010768655357,
+               "lng":78.4857702255249
+            }
+         ],
+         "postalCode":"500029",
+         "cc":"IN",
+         "city":"Hyderabad",
+         "state":"Telangana",
+         "country":"India",
+         "formattedAddress":[  
+            "Opp. Brand Factory (Himayat Nagar)",
+            "Hyderabad 500029",
+            "Telangana",
+            "India"
+         ]
+      },
+      "categories":[  
+         {  
+            "id":"4bf58dd8d48988d120951735",
+            "name":"Food Court",
+            "pluralName":"Food Courts",
+            "shortName":"Food Court",
+            "icon":{  
+               "prefix":"https://ss3.4sqi.net/img/categories_v2/shops/food_foodcourt_",
+               "suffix":".png"
+            },
+            "primary":true
+         }
+      ],
+      "referralId":"v-1544080206",
+      "hasPerk":false
+   },
+   {  
+      "id":"5a578c71491be76ec42aab06",
+      "name":"Biryani & Biryani",
+      "location":{  
+         "lat":17.407461,
+         "lng":78.39288,
+         "labeledLatLngs":[  
+            {  
+               "label":"display",
+               "lat":17.407461,
+               "lng":78.39288
+            }
+         ],
+         "postalCode":"500008",
+         "cc":"IN",
+         "city":"Hyderabad",
+         "state":"Telangana",
+         "country":"India",
+         "formattedAddress":[  
+            "Hyderabad 500008",
+            "Telangana",
+            "India"
+         ]
+      },
+      "categories":[  
+         {  
+            "id":"4bf58dd8d48988d1c4941735",
+            "name":"Restaurant",
+            "pluralName":"Restaurants",
+            "shortName":"Restaurant",
+            "icon":{  
+               "prefix":"https://ss3.4sqi.net/img/categories_v2/food/default_",
+               "suffix":".png"
+            },
+            "primary":true
+         }
+      ],
+      "referralId":"v-1544080206",
+      "hasPerk":false
+   },
+   {  
+      "id":"5713b299498e84909d0bd3f0",
+      "name":"biryani art",
+      "location":{  
+         "lat":17.400633,
+         "lng":78.388064,
+         "labeledLatLngs":[  
+            {  
+               "label":"display",
+               "lat":17.400633,
+               "lng":78.388064
+            }
+         ],
+         "cc":"IN",
+         "country":"India",
+         "formattedAddress":[  
+            "India"
+         ]
+      },
+      "categories":[  
+         {  
+            "id":"4bf58dd8d48988d10f941735",
+            "name":"Indian Restaurant",
+            "pluralName":"Indian Restaurants",
+            "shortName":"Indian",
+            "icon":{  
+               "prefix":"https://ss3.4sqi.net/img/categories_v2/food/indian_",
+               "suffix":".png"
+            },
+            "primary":true
+         }
+      ],
+      "referralId":"v-1544080206",
+      "hasPerk":false
+   },
+   {  
+      "id":"55f5d1c0498e8a3d685dab5f",
+      "name":"Paradise Biryani",
+      "location":{  
+         "address":"Opp. Brand Factory",
+         "crossStreet":"Himayat Nagar",
+         "lat":17.40141144098653,
+         "lng":78.48543092794486,
+         "labeledLatLngs":[  
+            {  
+               "label":"display",
+               "lat":17.40141144098653,
+               "lng":78.48543092794486
+            }
+         ],
+         "postalCode":"500029",
+         "cc":"IN",
+         "city":"Hyderabad",
+         "state":"Telangana",
+         "country":"India",
+         "formattedAddress":[  
+            "Opp. Brand Factory (Himayat Nagar)",
+            "Hyderabad 500029",
+            "Telangana",
+            "India"
+         ]
+      },
+      "categories":[  
+         {  
+            "id":"4bf58dd8d48988d120951735",
+            "name":"Food Court",
+            "pluralName":"Food Courts",
+            "shortName":"Food Court",
+            "icon":{  
+               "prefix":"https://ss3.4sqi.net/img/categories_v2/shops/food_foodcourt_",
+               "suffix":".png"
+            },
+            "primary":true
+         }
+      ],
+      "referralId":"v-1544080206",
+      "hasPerk":false
+   },
+   {  
+      "id":"520bc5e311d2852bfaeb414d",
+      "name":"Handi Biryani",
+      "location":{  
+         "address":"Kachiguda",
+         "crossStreet":"St No 2",
+         "lat":17.391031348297794,
+         "lng":78.49176820492954,
+         "labeledLatLngs":[  
+            {  
+               "label":"display",
+               "lat":17.391031348297794,
+               "lng":78.49176820492954
+            }
+         ],
+         "postalCode":"500027",
+         "cc":"IN",
+         "city":"Hyderabad",
+         "state":"Telangana",
+         "country":"India",
+         "formattedAddress":[  
+            "Kachiguda (St No 2)",
+            "Hyderabad 500027",
+            "Telangana",
+            "India"
+         ]
+      },
+      "categories":[  
+         {  
+            "id":"4bf58dd8d48988d147941735",
+            "name":"Diner",
+            "pluralName":"Diners",
+            "shortName":"Diner",
+            "icon":{  
+               "prefix":"https://ss3.4sqi.net/img/categories_v2/food/diner_",
+               "suffix":".png"
+            },
+            "primary":true
+         }
+      ],
+      "referralId":"v-1544080206",
+      "hasPerk":false
+   },
+   {  
+      "id":"50dbf6b3e4b08766dcc9f835",
+      "name":"Biryani Darbar",
+      "location":{  
+         "lat":17.36646257834631,
+         "lng":78.53840329810951,
+         "labeledLatLngs":[  
+            {  
+               "label":"display",
+               "lat":17.36646257834631,
+               "lng":78.53840329810951
+            }
+         ],
+         "cc":"IN",
+         "country":"India",
+         "formattedAddress":[  
+            "India"
+         ]
+      },
+      "categories":[  
+         {  
+            "id":"4bf58dd8d48988d10f941735",
+            "name":"Indian Restaurant",
+            "pluralName":"Indian Restaurants",
+            "shortName":"Indian",
+            "icon":{  
+               "prefix":"https://ss3.4sqi.net/img/categories_v2/food/indian_",
+               "suffix":".png"
+            },
+            "primary":true
+         }
+      ],
+      "referralId":"v-1544080206",
+      "hasPerk":false
+   },
+   {  
+      "id":"4dd8d55bc65bee535ad51592",
+      "name":"Central Biryani Paradise",
+      "location":{  
+         "address":"Panjagutta",
+         "lat":17.42409809411059,
+         "lng":78.4540439501668,
+         "labeledLatLngs":[  
+            {  
+               "label":"display",
+               "lat":17.42409809411059,
+               "lng":78.4540439501668
+            }
+         ],
+         "cc":"IN",
+         "city":"Hyderabad",
+         "state":"Telangana",
+         "country":"India",
+         "formattedAddress":[  
+            "Panjagutta",
+            "Hyderabad",
+            "Telangana",
+            "India"
+         ]
+      },
+      "categories":[  
+         {  
+            "id":"4d4b7105d754a06374d81259",
+            "name":"Food",
+            "pluralName":"Food",
+            "shortName":"Food",
+            "icon":{  
+               "prefix":"https://ss3.4sqi.net/img/categories_v2/food/default_",
+               "suffix":".png"
+            },
+            "primary":true
+         }
+      ],
+      "referralId":"v-1544080206",
+      "hasPerk":false
+   },
+   {  
+      "id":"4cdee229f8cdb1f7820b8e12",
+      "name":"Midnight Biryani",
+      "location":{  
+         "address":"Ameerpet",
+         "crossStreet":"Ameerpet Main Road",
+         "lat":17.436230183643588,
+         "lng":78.45362663269043,
+         "labeledLatLngs":[  
+            {  
+               "label":"display",
+               "lat":17.436230183643588,
+               "lng":78.45362663269043
+            }
+         ],
+         "cc":"IN",
+         "city":"Hyderabad",
+         "state":"Telangana",
+         "country":"India",
+         "formattedAddress":[  
+            "Ameerpet (Ameerpet Main Road)",
+            "Hyderabad",
+            "Telangana",
+            "India"
+         ]
+      },
+      "categories":[  
+         {  
+            "id":"4bf58dd8d48988d10f941735",
+            "name":"Indian Restaurant",
+            "pluralName":"Indian Restaurants",
+            "shortName":"Indian",
+            "icon":{  
+               "prefix":"https://ss3.4sqi.net/img/categories_v2/food/indian_",
+               "suffix":".png"
+            },
+            "primary":true
+         }
+      ],
+      "referralId":"v-1544080206",
+      "hasPerk":false
+   },
+   {  
+      "id":"584eaaaef2299508665ee2f9",
+      "name":"biryani darbar",
+      "location":{  
+         "lat":17.423975,
+         "lng":78.547141,
+         "labeledLatLngs":[  
+            {  
+               "label":"display",
+               "lat":17.423975,
+               "lng":78.547141
+            }
+         ],
+         "cc":"IN",
+         "country":"India",
+         "formattedAddress":[  
+            "India"
+         ]
+      },
+      "categories":[  
+         {  
+            "id":"54135bf5e4b08f3d2429dfe6",
+            "name":"Hyderabadi Restaurant",
+            "pluralName":"Hyderabadi Restaurants",
+            "shortName":"Hyderabadi",
+            "icon":{  
+               "prefix":"https://ss3.4sqi.net/img/categories_v2/food/default_",
+               "suffix":".png"
+            },
+            "primary":true
+         }
+      ],
+      "referralId":"v-1544080206",
+      "hasPerk":false
+   }
+]

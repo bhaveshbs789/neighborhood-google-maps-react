@@ -1,49 +1,53 @@
-import React, { Component } from 'react';
-// import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
-import Map from './Map'
+import locations from './venues.json';
+import MapDisplay from './Map';
 import * as FourSquareAPI from './FourSquareAPI'
 
 class App extends Component {
-
   state = {
-    venues : [],
-    markers : [],
-    center : [],
-    zoom : 13
-
-  }
-
-  componentDidMount(){
-    FourSquareAPI.searchVenue({
-        near: "Hyderabad, IN",
-        query: "biryani",
-        limit: 10
-      }).then(results => {
-        console.log(results)
-        const { venues } = results.response;
-        const { center } = results.response.geocode.feature.geometry;
-
-        const markers = venues.map(venue => {
-          return {
-            lat: venue.location.lat,
-            lng: venue.location.lng
-          }
-        })
-
-        this.setState({venues, center, markers})
-      })
-
-
+    lat: 17.3850,
+    lon: 78.4867,
+    zoom: 13,
+    venuesList: locations    
   }
   
-  render() {
+
+  // For some reason when retrieving the venues list via FourSquare API
+  // the markers dont render !! and works when hardcoded :(
+  // hence created the venues json file
+  // componentDidMount() {
+  //   FourSquareAPI.searchVenue({
+  //       near: "hyderabad, IN",
+  //       query:"biryani",
+  //       limit:10
+  //   }).then((results) => {
+  //       const {venues} = results.response;
+  //       const {center} = results.response.geocode.feature.geometry;
+
+  //       const markers = venues.map((venue) => {
+  //           return {
+  //               lat: venue.location.lat,
+  //               lng: venue.location.lng
+  //           }
+  //       })
+
+  //       this.setState({venues, center, markers})
+  //   })
+  // }
+
+  render = () => {
     return (
       <div className="App">
         <div>
-          <h1>Biryani Locations, Hyderabad</h1>
+          <h2>Hyderabad Biryani Restaurants</h2>
         </div>
-        <Map {...this.state}/>
+        <MapDisplay
+          lat={this.state.lat}
+          lon={this.state.lon}
+          zoom={this.state.zoom}
+          locations={this.state.venuesList}
+          />
       </div>
     );
   }
