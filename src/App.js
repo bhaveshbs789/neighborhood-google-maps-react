@@ -9,7 +9,10 @@ class App extends Component {
     lat: 17.3850,
     lon: 78.4867,
     zoom: 13,
-    venuesList: locations    
+    venuesList: locations,
+    locale : "hyderabad, IN",
+    query:"biryani",
+    limit: 10    
   }
   
 
@@ -42,12 +45,8 @@ class App extends Component {
         <div>
           <h2>Hyderabad Biryani Restaurants</h2>
         </div>
-        <MapDisplay
-          lat={this.state.lat}
-          lon={this.state.lon}
-          zoom={this.state.zoom}
-          locations={this.state.venuesList}
-          />
+        <MapDisplay {...this.state} />
+        }
       </div>
     );
   }

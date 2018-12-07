@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Map, InfoWindow, GoogleApiWrapper} from 'google-maps-react';
 import * as FourSquareAPI from './FourSquareAPI'
-import img from './restaurant.png'
+import img from './dish.png'
 
 const MAP_KEY = "AIzaSyCL1A0cRaE7FO0bNKY3U2rJSfws0Z9z4-Q";
 
@@ -23,9 +23,9 @@ class MapDisplay extends Component {
         // this.updateMarkers(this.props.locations);
 
         FourSquareAPI.searchVenue({
-        	near: "hyderabad, IN",
-        	query: "biryani",
-        	limit: 10
+        	near: this.props.locale,
+        	query: this.props.query,
+        	limit: this.props.limit
         }).then((results) => {
         	console.log(results)
         	let markerProperties = [];
@@ -77,7 +77,41 @@ class MapDisplay extends Component {
 
     onMarkerClick = (props, marker, e) => {
         this.closeInfoWindow();
-        this.setState({showingInfoWindow: true, clickedMarker: marker, clickedMarkerProperties: props});
+
+        FourSquareAPI.getVenueDetails(props.index)
+        .then(res => {
+        	console.log(res.response);
+        	let activeMarkerProps;
+        	if(res.response) {
+        		activeMarkerProps = {
+        			...props,
+        			url: res.response.venue.shortUrl
+        		}
+        	}
+        	
+
+        	if(activeMarkerProps.url) {
+        		FourSquareAPI.getVenuePhoto(props.index)
+        		.then(res => {
+        			activeMarkerProps = {
+        				...activeMarkerProps,
+        				images : res.response.photos
+        			}
+
+        			if(this.state.clickedMarker) {
+        				this.state.clickedMarker.setAnimation(null);
+        			}
+
+        			marker.setAnimation(this.props.google.maps.Animation.BOUNCE);
+        			this.setState({showingInfoWindow: true, clickedMarker: marker, clickedMarkerProperties: activeMarkerProps})
+        		})
+        	} else {
+        		marker.setAnimation(this.props.google.maps.Animation.BOUNCE);
+        		this.setState({showingInfoWindow: true, clickedMarker: marker, clickedMarkerProperties: activeMarkerProps})
+        	}
+        })
+
+        // this.setState({showingInfoWindow: true, clickedMarker: marker, clickedMarkerProperties: props});
     }
 
     
@@ -115,9 +149,22 @@ class MapDisplay extends Component {
                     <div>
                         <h4>{amProps && amProps.name}</h4>
                         <div>
+                        {amProps && amProps.images
+                            ? (
+                            	<div>
+                                <img src={amProps.images.items[0].prefix + "100x100" + amProps.images.items[0].suffix}
+                                	 alt={amProps.name}/>
+                                </div>
+                            )
+                            : ""}
                         {amProps && amProps.address
                             ? (
                                 <p>{amProps.address}</p>
+                            )
+                            : ""}
+                        {amProps && amProps.url
+                            ? (
+                                <a href={amProps.url}>Visit Website</a>
                             )
                             : ""}
                         </div>
