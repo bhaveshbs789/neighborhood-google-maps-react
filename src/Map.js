@@ -1,21 +1,70 @@
 import React, {Component} from 'react';
 import {Map, InfoWindow, GoogleApiWrapper} from 'google-maps-react';
+import * as FourSquareAPI from './FourSquareAPI'
+import img from './restaurant.png'
 
 const MAP_KEY = "AIzaSyCL1A0cRaE7FO0bNKY3U2rJSfws0Z9z4-Q";
 
 class MapDisplay extends Component {
     state = {
+    	center : [],
+    	bounds : [],
+    	points : [],
         map: null,
         markers: [],
         markerProps: [],
         clickedMarker: null,
         clickedMarkerProperties: null,
-        showingInfoWindow: false
+        showingInfoWindow: false,
     };
 
     mapReady = (props, map) => {
         this.setState({map});
-        this.updateMarkers(this.props.locations);
+        // this.updateMarkers(this.props.locations);
+
+        FourSquareAPI.searchVenue({
+        	near: "hyderabad, IN",
+        	query: "biryani",
+        	limit: 10
+        }).then((results) => {
+        	console.log(results)
+        	let markerProperties = [];
+        	let points = [];
+
+        	let markers = results.response.venues.map((venue, index) => {
+
+        		let oneMarkerProps = {
+        			key : index,
+        			index: venue.id,
+        			name: venue.name,
+        			address: venue.location.formattedAddress[0]
+        		}
+
+        		markerProperties.push(oneMarkerProps);
+
+        		let onePoint = {
+        			lat: venue.location.lat,
+        			lng: venue.location.lng
+        		}
+
+        		points.push(onePoint);
+
+        		let marker = new this.props.google.maps.Marker({
+        			position: {lat: venue.location.lat, lng: venue.location.lng},
+        			map: this.state.map,
+        			icon : img,
+        			animation: this.props.google.maps.Animation.DROP
+        		});
+        		marker.addListener('click', () => {
+                	this.onMarkerClick(oneMarkerProps, marker, null);
+            	});
+        		return marker;
+        	})
+
+        	const { center } = results.response.geocode.feature.geometry;
+        	const { bounds } = results.response.geocode.feature.geometry;
+        	this.setState({markers: markers, markerProps: markerProperties, center: center, bounds: bounds, points:points})
+        })
     }
 
     closeInfoWindow = () => {
@@ -31,51 +80,24 @@ class MapDisplay extends Component {
         this.setState({showingInfoWindow: true, clickedMarker: marker, clickedMarkerProperties: props});
     }
 
-    updateMarkers = (locations) => {
-        // no locations ? we are done then !!
-        if (!locations) {
-            return;
-        }
-        
-        // setMap for existing marker on map to null
-        this.state.markers.forEach(marker => marker.setMap(null));
-
-        // add markers to map
-        let markerProps = [];
-        let markers = locations.map((location, index) => {
-            let mProps = {
-                key: index,
-                index,
-                name: location.name,
-                position: {lat: location.location.lat, lng: location.location.lng}
-            };
-            markerProps.push(mProps);
-
-            let animation = this.props.google.maps.Animation.DROP;
-            let marker = new this.props.google.maps.Marker({
-                position: {lat: location.location.lat, lng: location.location.lng}, 
-                map: this.state.map, 
-                animation
-            });
-            marker.addListener('click', () => {
-                this.onMarkerClick(mProps, marker, null);
-            });
-            return marker;
-        })
-
-        this.setState({markers, markerProps});
-    }
-
+    
     render = () => {
         const style = {
             width: '100%',
             height: '100%'
         }
         const center = {
-            lat: this.props.lat,
-            lng: this.props.lon
+            lat: this.state.center.lat,
+            lng: this.state.center.lng
         }
+
         let amProps = this.state.clickedMarkerProperties;
+
+        var bounds = new this.props.google.maps.LatLngBounds();
+
+        for (var i = 0; i < this.state.points.length; i++) {
+  			bounds.extend(this.state.points[i]);
+		}
 
         return (
             <Map
@@ -83,22 +105,22 @@ class MapDisplay extends Component {
                 aria-label="map"
                 onReady={this.mapReady}
                 google={this.props.google}
-                zoom={this.props.zoom}
                 style={style}
-                initialCenter={center}
+                bounds={bounds}
                 onClick={this.closeInfoWindow}>
                 <InfoWindow
                     marker={this.state.clickedMarker}
                     visible={this.state.showingInfoWindow}
                     onClose={this.closeInfoWindow}>
                     <div>
-                        <h3>{amProps && amProps.name}</h3>
-                        {amProps && amProps.url
+                        <h4>{amProps && amProps.name}</h4>
+                        <div>
+                        {amProps && amProps.address
                             ? (
-                                <a href={amProps.url}>See website</a>
+                                <p>{amProps.address}</p>
                             )
                             : ""}
-                        
+                        </div>
                     </div>
                 </InfoWindow>
             </Map>
