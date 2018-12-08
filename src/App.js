@@ -46,7 +46,7 @@ class App extends Component {
           <h2>Hyderabad Biryani Restaurants</h2>
         </div>
         <MapDisplay {...this.state} />
-        }
+        
       </div>
     );
   }

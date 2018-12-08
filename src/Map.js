@@ -93,9 +93,12 @@ class MapDisplay extends Component {
         	if(activeMarkerProps.url) {
         		FourSquareAPI.getVenuePhoto(props.index)
         		.then(res => {
-        			activeMarkerProps = {
-        				...activeMarkerProps,
-        				images : res.response.photos
+        			console.log(res)
+        			if(res.response.photos.count > 0) {
+        				activeMarkerProps = {
+        					...activeMarkerProps,
+        					images : res.response.photos
+        				}
         			}
 
         			if(this.state.clickedMarker) {
