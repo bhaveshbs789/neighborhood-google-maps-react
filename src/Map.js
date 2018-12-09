@@ -162,7 +162,7 @@ class MapDisplay extends Component {
                             : ""}
                         {amProps && amProps.url
                             ? (
-                                <a href={amProps.url}>Visit Website</a>
+                                <a href={amProps.url} target="_blank">Visit Website</a>
                             )
                             : ""}
                         </div>
