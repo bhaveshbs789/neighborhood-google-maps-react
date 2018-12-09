@@ -11,7 +11,8 @@ class App extends Component {
         lon: 78.4867,
         zoom: 13,
         venuesList: locations,
-        drawerOpen: false   
+        drawerOpen: false,
+        filteredList:[]
     }
   
 
@@ -30,6 +31,27 @@ class App extends Component {
   //   })
   // }
 
+    componentDidMount() {
+        this.setState({
+            ...this.state,
+            filteredList: this.filterVenues(this.state.venuesList,"")
+        })
+    }
+
+    updateQuery = (query) => {
+        this.setState({
+            ...this.state,
+            selectedIndex: null,
+            filteredList: this.filterVenues(this.state.venuesList, query)
+        })
+    }
+
+    filterVenues = (locations,query) => {
+        // let regex = new RegExp(query, "gi");
+        // return locations.match(regex);
+        return locations.filter((location) => location.name.toLowerCase().includes(query.toLowerCase()));
+    }
+
     styles = {
         menuButton : {
             marginLeft: "10px",
@@ -37,7 +59,7 @@ class App extends Component {
             position: "absolute",
             left: "10px",
             top: "15px",
-            background:"#3F51B5",
+            background:"#ffbf00",
             padding: "10px",
             color:"white",
             borderRadius:"10px",
@@ -57,15 +79,20 @@ class App extends Component {
         this.setState({drawerOpen: !this.state.drawerOpen});
     }
 
+
+
     render = () => {
         return (
           <div className="App">
             <div>
-                <button onClick={this.toggleDrawer} style={this.styles.menuButton}>List</button>
+                <button onClick={this.toggleDrawer} style={this.styles.menuButton}>Check Out!!</button>
                 <h2>Hyderabad Biryani Restaurants</h2>
             </div>
             <MapDisplay {...this.state}/>
-            <VenueListDrawer locations={this.state.venuesList} open={this.state.drawerOpen} toggleDrawer={this.toggleDrawer}/>
+            <VenueListDrawer locations={this.state.filteredList} 
+                             open={this.state.drawerOpen} 
+                             toggleDrawer={this.toggleDrawer}
+                             filterVenues={this.updateQuery}/>
           </div>
         );
     }

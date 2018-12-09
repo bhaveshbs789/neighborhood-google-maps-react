@@ -19,30 +19,48 @@ class VenueList extends Component {
 		},
 
 		fullList : {
-			width: "auto"
+			width: "90%"
 		},
 
 		listItem : {
-			marginBottom:"15px"
+			marginBottom:"15px",
+			textAlign: "left"
 		},
 
 		listLink : {
 			background: "transparent",
 			border: "none",
 			color:"grey",
-			textTransform:"uppercase"
+			textTransform:"uppercase",
+			padding: "5px"
 		},
 
 		filterEntry : {
 			border : "1px solid grey",
 			padding: "8px",
 			margin: "30px 0px",
-			width: "90%"
+			width: "80%",
+			borderRadius:"10px"
+		},
+		closeLink : {
+			padding:"8px",
+			backgroundColor:"#d1cccc",
+			borderRadius:"10px",
+			color:"white",
+			fontWeight:"bolder",
+			border:"none"
 		}
 	};
 
+	onClear = () => {
+		this.setState({query : ""})
+		// reset the results when clicking the x button
+		this.updateQuery("")
+	}
+
 	updateQuery = (typedQuery) => {
-		this.setState({query: typedQuery });
+		this.setState({query: typedQuery});
+		this.props.filterVenues(typedQuery)
 	}
 
 	render() {
@@ -56,7 +74,7 @@ class VenueList extends Component {
 						   placeholder="Filter Restaurants..."
 						   name="filter"
 						   onChange={(evt) => {this.updateQuery(evt.target.value)}}
-						   value={this.state.query} />
+						   value={this.state.query} /><button onClick={this.onClear} style={this.styles.closeLink}>x</button>
 					<ul style={this.styles.noListStyle}>
 					{this.props.locations.map((location, index) => {
 						return (

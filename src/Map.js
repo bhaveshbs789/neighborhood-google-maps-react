@@ -18,7 +18,8 @@ class MapDisplay extends Component {
 
     mapReady = (props, map) => {
         this.setState({map});
-        this.updateMarkers(this.props.venuesList);
+        // this.updateMarkers(this.props.venuesList);
+        this.updateMarkers(this.props.filteredList);
     }
 
     updateMarkers = (locations) => {
