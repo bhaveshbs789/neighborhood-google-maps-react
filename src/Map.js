@@ -7,8 +7,6 @@ const MAP_KEY = "AIzaSyCL1A0cRaE7FO0bNKY3U2rJSfws0Z9z4-Q";
 
 class MapDisplay extends Component {
     state = {
-    	center : [],
-    	bounds : [],
     	points : [],
         map: null,
         markers: [],
@@ -20,52 +18,54 @@ class MapDisplay extends Component {
 
     mapReady = (props, map) => {
         this.setState({map});
-        // this.updateMarkers(this.props.locations);
-
-        FourSquareAPI.searchVenue({
-        	near: this.props.locale,
-        	query: this.props.query,
-        	limit: this.props.limit
-        }).then((results) => {
-        	console.log(results)
-        	let markerProperties = [];
-        	let points = [];
-
-        	let markers = results.response.venues.map((venue, index) => {
-
-        		let oneMarkerProps = {
-        			key : index,
-        			index: venue.id,
-        			name: venue.name,
-        			address: venue.location.formattedAddress[0]
-        		}
-
-        		markerProperties.push(oneMarkerProps);
-
-        		let onePoint = {
-        			lat: venue.location.lat,
-        			lng: venue.location.lng
-        		}
-
-        		points.push(onePoint);
-
-        		let marker = new this.props.google.maps.Marker({
-        			position: {lat: venue.location.lat, lng: venue.location.lng},
-        			map: this.state.map,
-        			icon : img,
-        			animation: this.props.google.maps.Animation.DROP
-        		});
-        		marker.addListener('click', () => {
-                	this.onMarkerClick(oneMarkerProps, marker, null);
-            	});
-        		return marker;
-        	})
-
-        	const { center } = results.response.geocode.feature.geometry;
-        	const { bounds } = results.response.geocode.feature.geometry;
-        	this.setState({markers: markers, markerProps: markerProperties, center: center, bounds: bounds, points:points})
-        })
+        this.updateMarkers(this.props.venuesList);
     }
+
+    updateMarkers = (locations) => {
+        // If all the locations have been filtered then we're done
+        if (!locations) 
+            return;
+        
+        // For any existing markers remove them from the map
+        this.state.markers.forEach(marker => marker.setMap(null));
+        
+        // Add the markers to the map along the way.
+     	let markerProperties = [];
+    	let points = [];
+
+    	let markers = locations.map((venue, index) => {
+
+    		let oneMarkerProps = {
+    			key : index,
+    			index: venue.id,
+    			name: venue.name,
+    			address: venue.location.formattedAddress[0]
+    		}
+
+    		markerProperties.push(oneMarkerProps);
+
+    		let onePoint = {
+    			lat: venue.location.lat,
+    			lng: venue.location.lng
+    		}
+
+    		points.push(onePoint);
+
+    		let marker = new this.props.google.maps.Marker({
+    			position: {lat: venue.location.lat, lng: venue.location.lng},
+    			map: this.state.map,
+    			icon : img,
+    			animation: this.props.google.maps.Animation.DROP
+    		});
+    		marker.addListener('click', () => {
+            	this.onMarkerClick(oneMarkerProps, marker, null);
+        	});
+    		return marker;
+    	    });
+
+    	this.setState({markers: markers, markerProps: markerProperties, points:points})
+    }
+
 
     closeInfoWindow = () => {
         this.state.clickedMarker && this
@@ -113,21 +113,16 @@ class MapDisplay extends Component {
         		this.setState({showingInfoWindow: true, clickedMarker: marker, clickedMarkerProperties: activeMarkerProps})
         	}
         })
-
-        // this.setState({showingInfoWindow: true, clickedMarker: marker, clickedMarkerProperties: props});
     }
 
     
     render = () => {
+    	// console.log(this.props);
         const style = {
             width: '100%',
             height: '100%'
         }
-        const center = {
-            lat: this.state.center.lat,
-            lng: this.state.center.lng
-        }
-
+        
         let amProps = this.state.clickedMarkerProperties;
 
         var bounds = new this.props.google.maps.LatLngBounds();

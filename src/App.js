@@ -19,33 +19,25 @@ class App extends Component {
   // For some reason when retrieving the venues list via FourSquare API
   // the markers dont render !! and works when hardcoded :(
   // hence created the venues json file
-  // componentDidMount() {
+  // componentWillMount() {
   //   FourSquareAPI.searchVenue({
   //       near: "hyderabad, IN",
   //       query:"biryani",
   //       limit:10
   //   }).then((results) => {
+  //       console.log(results)
   //       const {venues} = results.response;
-  //       const {center} = results.response.geocode.feature.geometry;
-
-  //       const markers = venues.map((venue) => {
-  //           return {
-  //               lat: venue.location.lat,
-  //               lng: venue.location.lng
-  //           }
-  //       })
-
-  //       this.setState({venues, center, markers})
+  //       this.setState({venuesList: venues})
   //   })
   // }
 
-  render = () => {
+ render = () => {
     return (
       <div className="App">
         <div>
           <h2>Hyderabad Biryani Restaurants</h2>
         </div>
-        <MapDisplay {...this.state} />
+        <MapDisplay {...this.state}/>
         
       </div>
     );
