@@ -16,6 +16,17 @@ class MapDisplay extends Component {
         showingInfoWindow: false,
     };
 
+    componentWillReceiveProps(props){
+    	if(props.filteredList.length !== this.state.markers.length){
+    		this.closeInfoWindow();
+    		if(props.filteredList.length === 0){
+    			return;
+    		}
+    		this.updateMarkers(props.filteredList);
+    		this.setState({clickedMarker: null});
+    	}
+    }
+
     mapReady = (props, map) => {
         this.setState({map});
         // this.updateMarkers(this.props.venuesList);
@@ -37,12 +48,12 @@ class MapDisplay extends Component {
     	let markers = locations.map((venue, index) => {
 
     		let oneMarkerProps = {
-    			key : index,
-    			index: venue.id,
+    			key : venue.id,
+    			index: index,
     			name: venue.name,
     			address: venue.location.formattedAddress[0]
     		}
-
+    		console.log(oneMarkerProps);
     		markerProperties.push(oneMarkerProps);
 
     		let onePoint = {
@@ -163,7 +174,7 @@ class MapDisplay extends Component {
                             : ""}
                         {amProps && amProps.url
                             ? (
-                                <a href={amProps.url} target="_blank">Visit Website</a>
+                                <a href={amProps.url}>Visit Website</a>
                             )
                             : ""}
                         </div>

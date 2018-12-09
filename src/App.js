@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import locations from './venues.json';
 import MapDisplay from './Map';
-import * as FourSquareAPI from './FourSquareAPI'
+// import * as FourSquareAPI from './FourSquareAPI'
 import VenueListDrawer from './VenueList'
 
 class App extends Component {
@@ -52,6 +52,10 @@ class App extends Component {
         return locations.filter((location) => location.name.toLowerCase().includes(query.toLowerCase()));
     }
 
+    toggleDrawer = () => {
+        this.setState({drawerOpen: !this.state.drawerOpen});
+    }
+
     styles = {
         menuButton : {
             marginLeft: "10px",
@@ -74,12 +78,6 @@ class App extends Component {
             marginTop: "0px"
         }
     }
-
-    toggleDrawer = () => {
-        this.setState({drawerOpen: !this.state.drawerOpen});
-    }
-
-
 
     render = () => {
         return (
