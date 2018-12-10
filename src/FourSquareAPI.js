@@ -4,7 +4,7 @@ const api = "https://api.foursquare.com/v2";
 const fsAuthKeys = {
 	client_id : "BGAY1GJ4X1SJXAL1R2JBEBTUIHUGEGN13X43DCFANBTAABW1",
 	client_secret : "14HPXWZ2C4ZGSVSIEIORLMUDNONRQ0BZBCIL5X5DKBLVJJE5",
-	v: "20181204"
+	v: "20181210"
 }
 
 /*-----Construct the base authentication URL-------------
