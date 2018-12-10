@@ -38,10 +38,14 @@ class App extends Component {
         })
     }
 
+    clickListItem = (index) => {
+        this.setState({clickedItemIndex: index, drawerOpen: !this.state.drawerOpen})
+    }
+
     updateQuery = (query) => {
         this.setState({
             ...this.state,
-            selectedIndex: null,
+            clickedItemIndex: null,
             filteredList: this.filterVenues(this.state.venuesList, query)
         })
     }
@@ -90,7 +94,8 @@ class App extends Component {
             <VenueListDrawer locations={this.state.filteredList} 
                              open={this.state.drawerOpen} 
                              toggleDrawer={this.toggleDrawer}
-                             filterVenues={this.updateQuery}/>
+                             filterVenues={this.updateQuery}
+                             clickedListItem={this.clickListItem}/>
           </div>
         );
     }
