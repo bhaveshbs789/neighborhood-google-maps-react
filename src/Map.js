@@ -16,6 +16,10 @@ class MapDisplay extends Component {
         showingInfoWindow: false,
     };
 
+//    componentDidUpdate() {
+//        
+//    }
+
     componentWillReceiveProps(props){
     	if(props.filteredList.length !== this.state.markers.length){
     		this.closeInfoWindow();
@@ -24,8 +28,28 @@ class MapDisplay extends Component {
     		}
     		this.updateMarkers(props.filteredList);
     		this.setState({clickedMarker: null});
+            return;
     	}
+        
+        if (!props.clickedItemIndex || (this.state.clickedMarker && (this.state.markers[props.clickedItemIndex] !== this.state.clickedMarker))) {
+            this.closeInfoWindow();
+        }
+        
+        if (props.clickedItemIndex === null || typeof(props.clickedItemIndex) === "undefined") {
+            return;
+        };
+        
+        this.onMarkerClick(this.state.markerProps[props.clickedItemIndex], this.state.markers[props.clickedItemIndex]);
     }
+
+//    static getDerivedStateFromProps(nextProps, prevState) {
+//        if(prevState.markers.length !== nextProps.filteredList.length){
+//            return {
+//                closeInfoWindow();
+//                updateMarkers(filteredList)
+//            }
+//        }
+//    }
 
     mapReady = (props, map) => {
         this.setState({map});
@@ -53,7 +77,7 @@ class MapDisplay extends Component {
     			name: venue.name,
     			address: venue.location.formattedAddress[0]
     		}
-    		console.log(oneMarkerProps);
+    		//console.log(oneMarkerProps);
     		markerProperties.push(oneMarkerProps);
 
     		let onePoint = {
@@ -84,15 +108,19 @@ class MapDisplay extends Component {
             .state
             .clickedMarker
             .setAnimation(null);
-        this.setState({showingInfoWindow: false, clickedMarker: null, clickedMarkerProperties: null});
+//        if(this.props.clickedItemIndex === null || this.props.clickedItemIndex === "undefined") {
+//            this.setState({showingInfoWindow: false, clickedMarker: null, clickedMarkerProperties: null});
+//        }
+        this.setState({showingInfoWindow: false, clickedMarker: null, clickedMarkerProperties: null});       
+            
     }
 
     onMarkerClick = (props, marker, e) => {
         this.closeInfoWindow();
 
-        FourSquareAPI.getVenueDetails(props.index)
+        FourSquareAPI.getVenueDetails(props.key)
         .then(res => {
-        	console.log(res.response);
+        	//console.log(res.response);
         	let activeMarkerProps;
         	if(res.response) {
         		activeMarkerProps = {
@@ -103,9 +131,9 @@ class MapDisplay extends Component {
         	
 
         	if(activeMarkerProps.url) {
-        		FourSquareAPI.getVenuePhoto(props.index)
+        		FourSquareAPI.getVenuePhoto(props.key)
         		.then(res => {
-        			console.log(res)
+        			//console.log(res)
         			if(res.response.photos.count > 0) {
         				activeMarkerProps = {
         					...activeMarkerProps,
@@ -132,7 +160,9 @@ class MapDisplay extends Component {
     	// console.log(this.props);
         const style = {
             width: '100%',
-            height: '100%'
+            height: '100%',
+            elementType: 'geometry', 
+            stylers: [{color: '#242f3e'}]
         }
         
         let amProps = this.state.clickedMarkerProperties;
@@ -162,7 +192,7 @@ class MapDisplay extends Component {
                         {amProps && amProps.images
                             ? (
                             	<div>
-                                <img src={amProps.images.items[0].prefix + "100x100" + amProps.images.items[0].suffix}
+                                <img src={amProps.images.items[0].prefix + "150x150" + amProps.images.items[0].suffix}
                                 	 alt={amProps.name}/>
                                 </div>
                             )
