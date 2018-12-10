@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Map, InfoWindow, GoogleApiWrapper} from 'google-maps-react';
 import * as FourSquareAPI from './FourSquareAPI'
 import img from './dish.png'
+import errorDisplay from './ErrorDisplay'
 
 const MAP_KEY = "AIzaSyCL1A0cRaE7FO0bNKY3U2rJSfws0Z9z4-Q";
 
@@ -215,4 +216,5 @@ class MapDisplay extends Component {
     }
 }
 
-export default GoogleApiWrapper({apiKey: MAP_KEY})(MapDisplay)
+export default GoogleApiWrapper({apiKey: MAP_KEY,
+								LoadingContainer: errorDisplay})(MapDisplay)
