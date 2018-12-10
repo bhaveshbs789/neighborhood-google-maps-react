@@ -79,7 +79,7 @@ class VenueList extends Component {
 					{this.props.locations.map((location, index) => {
 						return (
 							<li style={this.styles.listItem} key={index}>
-								<button style={this.styles.listLink} key={index}>{location.name}</button>
+								<button style={this.styles.listLink} key={index} name={location.name.toLowerCase()} onClick={(event) => this.props.clickedListItem(index)}>{location.name}</button>
 							</li>
 						)
 					})}
