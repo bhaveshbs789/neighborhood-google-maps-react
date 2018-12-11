@@ -24,12 +24,12 @@ class noDisplay extends Component {
 	render() {
 		return (
 			<div>
-				{this.state.showMessage} ? (<div>
+				{this.state.showMessage ? (<div>
 												<h2>Error Encountered</h2>
 												<p>Check your network connection and try again</p>
 												<p>Your secret key could be the issue here also :D</p>
 												<img src={nothing} alt="Error Nothing Found gif" ></img>
-											</div>) : (<div><h2>Loading.....</h2></div>)
+											</div>) : (<div><h2>Loading.....</h2></div>)}
 			</div>
 		)
 	}
